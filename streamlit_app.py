@@ -21,3 +21,9 @@ def run_query(query):
         return cur.fetchall()
 
 rows = run_query("SELECT * from postgre_capleftus.stuff.perspectivas;")
+
+# Print results.
+for row in rows:
+    st.write(f"{row[0]} has a :{row[1]}:")
+
+con.close()
