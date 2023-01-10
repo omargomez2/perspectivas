@@ -1,5 +1,5 @@
 
-import streamlit
+import streamlit as st
 import pandas
 import psycopg2
 
