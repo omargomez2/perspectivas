@@ -3,18 +3,15 @@ import streamlit as st
 import pandas
 import psycopg2
 
-@st.experimental_singleton
-def init_connection():
-    return psycopg2.connect(**st.secrets["postgres"])
 
-conn = init_connection()
+conn = psycopg2.connect(**st.secrets["postgres"])
 
 # Perform query.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
 @st.experimental_memo(ttl=600)
 
 # Creating a cursor object using the cursor() method
-cur=conn.cursor()
+cur = conn.cursor()
 
 # Executing an MYSQL function using the execute() method
 cur.execute("select version()")
