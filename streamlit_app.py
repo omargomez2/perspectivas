@@ -21,8 +21,18 @@ def run_query(query):
         return cur.fetchall()
 
 rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
-
 st.dataframe(rows)
+
+dict = {'0': 'Id',
+        '1': 'Título',
+        '2': 'Autores'
+        '3': 'Estado'}
+
+df=st.dataframe(rows)
+df.rename(columns=dict,inplace=True)
+ 
+# print Data frame after rename columns
+display(df)
 
 # Print results.
 #for row in rows:
