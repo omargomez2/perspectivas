@@ -25,19 +25,12 @@ rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
 
 dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
 
-#dfp = dfp.reset_index(drop=True)
-# CSS to inject contained in a string
-hide_table_row_index = """
-            <style>
-            thead tr th:first-child {display:none}
-            tbody th {display:none}
-            </style>
-            """
 
-# Inject CSS with Markdown
-st.markdown(hide_table_row_index, unsafe_allow_html=True)
+styler = dfp.style.hide_index()
+
+#st.write(styler.to_html(), unsafe_allow_html=True)
 
 
-st.dataframe(dfp)
+st.dataframe(dfp.to_html(index=False), unsafe_allow_html=True)
 
 conn.close()
