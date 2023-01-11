@@ -24,7 +24,7 @@ rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
 
 dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
 
-dfp.hide_index()
+dfp.reset_index(drop=True, inplace=True)
 
 st.dataframe(dfp)
 
