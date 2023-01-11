@@ -22,9 +22,9 @@ def run_query(query):
 rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
 #st.dataframe(rows)
 
-columns = ['Id', 'Título', 'Autores','Estado']
+index_labels=['Id', 'Título', 'Autores','Estado']
 
-dfp = pandas.DataFrame(rows, columns)
+dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'], index=index_labels)
 
 #df = pd.DataFrame(technologies,index=index_labels)
 
@@ -33,6 +33,6 @@ dfp = pandas.DataFrame(rows, columns)
 #st.write(styler.to_html(), unsafe_allow_html=True)
 
 
-st.dataframe(dfp)
+st.dataframe(styler)
 
 conn.close()
