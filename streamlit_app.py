@@ -28,9 +28,9 @@ dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
 
 styler = dfp.style.hide_index()
 
-st.write(styler.to_html(), unsafe_allow_html=True)
+#st.write(styler.to_html(), unsafe_allow_html=True)
 
 
-#st.dataframe(dfp)
+st.dataframe(styler.dfp)
 
 conn.close()
