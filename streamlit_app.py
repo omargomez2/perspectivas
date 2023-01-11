@@ -25,7 +25,7 @@ st.dataframe(rows)
 
 dict = {'0': 'Id',
         '1': 'Título',
-        '2': 'Autores'
+        '2': 'Autores',
         '3': 'Estado'}
 
 df=st.dataframe(rows)
