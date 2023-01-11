@@ -13,7 +13,7 @@ conn = init_connection()
 
 # Perform query.
 # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-#-@st.experimental_memo(ttl=600)
+@st.experimental_memo(ttl=600)
 def run_query(query):
     with conn.cursor() as cur:
         cur.execute(query)
@@ -25,7 +25,19 @@ rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
 
 dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
 
-dfp = dfp.reset_index(drop=True)
+#dfp = dfp.reset_index(drop=True)
+# CSS to inject contained in a string
+hide_table_row_index = """
+            <style>
+            thead tr th:first-child {display:none}
+            tbody th {display:none}
+            </style>
+            """
+
+# Inject CSS with Markdown
+st.markdown(hide_table_row_index, unsafe_allow_html=True)
+
+
 
 st.dataframe(dfp)
 
