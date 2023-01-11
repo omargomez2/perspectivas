@@ -23,8 +23,8 @@ def run_query(query):
 rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
 st.dataframe(rows)
 
-df = pandas.DataFrame(rows, columns = ['id', 'título', 'autores','estado'])
-st.write (df)
+dfp = pandas.DataFrame(rows, columns = ['id', 'título', 'autores','estado'])
+st.dataframe(dfp)
 
 
 #df=st.dataframe(rows)
