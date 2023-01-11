@@ -20,7 +20,7 @@ def run_query(query):
         cur.execute(query)
         return cur.fetchall()
 
-rows = run_query("SELECT * from postgre_capleftus.stuff.perspectivas;")
+rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
 
 # Print results.
 for row in rows:
