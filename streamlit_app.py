@@ -22,9 +22,10 @@ def run_query(query):
 rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
 #st.dataframe(rows)
 
-dfp.reset_index(drop=True, inplace=True)
 
 dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
+
+dfp = dfp.reset_index(drop=True)
 
 st.dataframe(dfp)
 
