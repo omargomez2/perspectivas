@@ -22,8 +22,9 @@ def run_query(query):
 
 rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
 
+streamlit.dataframe(rows)
 # Print results.
-for row in rows:
-    st.write(f"{row[0]} has a :{row[1]}:")
+#for row in rows:
+#    st.write(f"{row[0]} has a :{row[1]}:")
 
 conn.close()
