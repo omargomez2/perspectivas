@@ -31,6 +31,6 @@ styler = dfp.style.hide_index()
 #st.write(styler.to_html(), unsafe_allow_html=True)
 
 
-st.dataframe(styler.dfp)
+st.dataframe(styler)
 
 conn.close()
