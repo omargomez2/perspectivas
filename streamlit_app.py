@@ -24,7 +24,7 @@ rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
 
 columns = ['Id', 'Título', 'Autores','Estado']
 
-dfp = pandas.DataFrame(rows, columns, index=columns)
+dfp = pandas.DataFrame(rows, columns)
 
 #df = pd.DataFrame(technologies,index=index_labels)
 
