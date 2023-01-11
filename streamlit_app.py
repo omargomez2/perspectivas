@@ -29,5 +29,4 @@ dfp = dfp.reset_index(drop=True)
 
 st.dataframe(dfp)
 
-#--
 conn.close()
