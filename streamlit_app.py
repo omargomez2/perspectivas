@@ -33,6 +33,6 @@ dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
 #st.write(styler.to_html(), unsafe_allow_html=True)
 
 
-st.dataframe(styler)
+st.dataframe(dfp)
 
 conn.close()
