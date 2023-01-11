@@ -23,6 +23,10 @@ rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
 #st.dataframe(rows)
 
 dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
+
+#Using hide Index
+dfp.style.hide_index()
+
 st.dataframe(dfp)
 
 
