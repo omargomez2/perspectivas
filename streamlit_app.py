@@ -24,10 +24,9 @@ rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
 st.dataframe(rows)
 
 df=st.dataframe(rows)
-df.columns = ['col1','col2','col3','col4']
+#df.columns = ['col1','col2','col3','col4']
 
-df.rename(columns= {'col1':'new_col1','col2':'new_col2','col3':'new_col3','col4':'new_col4'}, inplace = True)
-
+df.rename(columns={'col1':'new_col1','col2':'new_col2','col3':'new_col3','col4':'new_col4'}, inplace = True)
 st.dataframe(df)
 
 # Print results.
