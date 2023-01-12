@@ -26,17 +26,9 @@ index_labels=['Id', 'Título', 'Autores','Estado']
 
 dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
 
-# CSS to inject contained in a string
-hide_dataframe_row_index = """
-            <style>
-            .row_heading.level0 {display:none}
-            .blank {display:none}
-            </style>
-            """
+styler = dfp.style.hide_index()
 
-# Inject CSS with Markdown
-st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
-
+st.write(styler)
 
 st.dataframe(dfp)
 
