@@ -27,15 +27,15 @@ index_labels=['Id', 'Título', 'Autores','Estado']
 dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
 
 # CSS to inject contained in a string
-hide_table_row_index = """
+hide_dataframe_row_index = """
             <style>
-            thead tr th:first-child {display:none}
-            tbody th {display:none}
+            .row_heading.level0 {display:none}
+            .blank {display:none}
             </style>
             """
 
 # Inject CSS with Markdown
-st.markdown(hide_table_row_index, unsafe_allow_html=True)
+st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
 
 
 st.dataframe(dfp)
