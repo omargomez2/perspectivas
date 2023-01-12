@@ -26,10 +26,6 @@ index_labels=['Id', 'Título', 'Autores','Estado']
 
 dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
 
-styler = dfp.style.hide()
-
-st.write(styler)
-
 st.dataframe(dfp)
 
 conn.close()
