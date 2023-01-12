@@ -24,7 +24,7 @@ rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
 
 index_labels=['Id', 'Título', 'Autores','Estado']
 
-dfp = pandas.DataFrame(rows, columns = ['g','Id', 'Título', 'Autores','Estado'])
+dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
 
 # CSS to inject contained in a string
 hide_dataframe_row_index = """
