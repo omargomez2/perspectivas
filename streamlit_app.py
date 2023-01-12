@@ -26,7 +26,7 @@ index_labels=['Id', 'Título', 'Autores','Estado']
 
 dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
 
-styler = dfp.style.hide_index()
+styler = dfp.style.hide(axis='index')
 
 st.write(styler)
 
