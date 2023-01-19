@@ -1,4 +1,10 @@
 
+#-------------------
+# Author: OG 2023
+# url: https://omargomez2-perspectivas-streamlit-app-gn22jw.streamlit.app/
+# Description: Perspectivas Journal Report
+#------------------
+
 import streamlit as st
 import pandas
 import psycopg2
@@ -24,7 +30,7 @@ rows = run_query("SELECT paper, titulo, enviado, autores, estado, notas from pos
 
 #index_labels=['Paper ID', 'Título', 'Enviado','Autores','Estado','Notas']
 
-dfp = pandas.DataFrame(rows, columns = 'Paper ID','Título','Enviado','Autores','Estado','Notas'])
+dfp = pandas.DataFrame(rows, columns = 'Paper ID','Título','Enviado','Autores','Estado','Notas')
 
 st.dataframe(dfp)
 
