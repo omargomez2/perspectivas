@@ -26,11 +26,12 @@ def run_query(query):
         return cur.fetchall()
 
 rows = run_query("SELECT paper, titulo, enviado, autores, estado, notas from postgre_capleftus.public.perspectivas;")
-#st.dataframe(rows)
+
+st.dataframe(rows)
 
 #index_labels=['Paper ID', 'Título', 'Enviado','Autores','Estado','Notas']
 
-dfp = pandas.DataFrame(rows, columns = 'Paper ID','Título','Enviado','Autores','Estado','Notas')
+#dfp = pandas.DataFrame(rows, columns = 'Paper ID' , 'Título' , 'Enviado' , 'Autores' , 'Estado' , 'Notas')
 
 st.dataframe(dfp)
 
