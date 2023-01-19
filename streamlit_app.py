@@ -31,7 +31,7 @@ st.dataframe(rows)
 
 #index_labels=['Paper ID', 'Título', 'Enviado','Autores','Estado','Notas']
 
-dfp = pandas.DataFrame(rows, columns = 'PaperID' , 'Título' , 'Enviado' , 'Autores' , 'Estado' , 'Notas')
+dfp = pandas.DataFrame(rows, columns = 'Id', 'Paper' , 'Título' , 'Enviado' , 'Autores' , 'Estado' , 'Notas')
 
 st.dataframe(dfp)
 
