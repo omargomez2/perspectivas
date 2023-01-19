@@ -31,7 +31,7 @@ rows = run_query("SELECT paper, titulo, enviado, autores, estado, notas from pos
 
 #index_labels=['Paper ID', 'Título', 'Enviado','Autores','Estado','Notas']
 
-streamlit.title('Journal status')
+st.title('Journal status')
 
 dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Autores' , 'Estado' , 'Notas'], width=1240, height=800)
 
