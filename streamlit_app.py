@@ -32,9 +32,9 @@ ccount = run_query("SELECT count(*) from postgre_capleftus.public.perspectivas;"
 
 #index_labels=['Paper ID', 'Título', 'Enviado','Autores','Estado','Notas']
 
-st.title('Journal status')
+st.title('Estado de envíos')
 
-st.header(ccount[0][0])
+st.header('Número de envíos activos ',ccount[0][0])
 
 dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Autores' , 'Estado' , 'Notas'])
 
