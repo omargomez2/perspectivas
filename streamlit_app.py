@@ -19,12 +19,12 @@ def run_query(query):
         cur.execute(query)
         return cur.fetchall()
 
-rows = run_query("SELECT * from postgre_capleftus.public.perspectivas;")
+rows = run_query("SELECT paper, titulo, enviado, autores, estado, notas from postgre_capleftus.public.perspectivas;")
 #st.dataframe(rows)
 
-index_labels=['Id', 'Título', 'Autores','Estado']
+#index_labels=['Paper ID', 'Título', 'Enviado','Autores','Estado','Notas']
 
-dfp = pandas.DataFrame(rows, columns = ['Id', 'Título', 'Autores','Estado'])
+dfp = pandas.DataFrame(rows, columns = 'Paper ID','Título','Enviado','Autores','Estado','Notas'])
 
 st.dataframe(dfp)
 
