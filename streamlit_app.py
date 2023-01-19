@@ -27,11 +27,11 @@ def run_query(query):
 
 rows = run_query("SELECT paper, titulo, enviado, autores, estado, notas from postgre_capleftus.public.perspectivas;")
 
-st.dataframe(rows)
+#st.dataframe(rows)
 
 #index_labels=['Paper ID', 'Título', 'Enviado','Autores','Estado','Notas']
 
-dfp = pandas.DataFrame(rows, columns = 'Id', 'Paper' , 'Título' , 'Enviado' , 'Autores' , 'Estado' , 'Notas')
+dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Autores' , 'Estado' , 'Notas'])
 
 st.dataframe(dfp)
 
