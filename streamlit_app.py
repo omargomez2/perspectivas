@@ -35,6 +35,6 @@ st.title('Journal status')
 
 dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Autores' , 'Estado' , 'Notas'])
 
-st.dataframe(dfp, 1200, 540)
+st.dataframe(dfp, 1200, 580)
 
 conn.close()
