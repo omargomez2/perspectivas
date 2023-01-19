@@ -38,6 +38,6 @@ st.header('Número de envíos activos '+ str(ccount[0][0]))
 
 dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Autores' , 'Estado' , 'Notas'])
 
-st.dataframe(dfp, 1440, 600)
+st.dataframe(dfp, 1440, 540)
 
 conn.close()
