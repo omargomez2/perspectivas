@@ -27,14 +27,17 @@ def run_query(query):
 
 rows = run_query("SELECT paper, titulo, enviado, autores, estado, notas from postgre_capleftus.public.perspectivas;")
 
+ccount = run_query("SELECT count(*) from postgre_capleftus.public.perspectivas;")
 #st.dataframe(rows)
 
 #index_labels=['Paper ID', 'Título', 'Enviado','Autores','Estado','Notas']
 
 st.title('Journal status')
 
+st.header(ccount)
+
 dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Autores' , 'Estado' , 'Notas'])
 
-st.dataframe(dfp, 1200, 580)
+st.dataframe(dfp, 1440, 600)
 
 conn.close()
