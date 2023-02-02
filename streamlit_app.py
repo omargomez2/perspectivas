@@ -36,7 +36,7 @@ st.title('Estado de envíos')
 
 st.header('Número de envíos activos '+ str(ccount[0][0]))
 
-dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Días' 'Autores' , 'Estado' , 'Notas', 'Monitor'])
+dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Días', 'Autores' , 'Estado' , 'Notas', 'Monitor'])
 
 st.dataframe(dfp, 1440, 540)
 
