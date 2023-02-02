@@ -37,7 +37,7 @@ st.title('Estado de envíos')
 st.header('Número de envíos activos '+ str(ccount[0][0]))
 
 dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Días', 'Autores' , 'Estado' , 'Notas', 'Monitor'])
-dfp.Días = dfp.Días.round()
+dfp.Días = dfp.Días.round().astype(int)
 #dfp.Días.apply(np.round)
 #dfp.round({'Días': 0})
 
