@@ -48,7 +48,7 @@ df_envios = df_envios.set_index('Año')
 
 #st.dataframe(df_envios)
 
-st.header('Número de envíos por año )
+st.header('Número de envíos por año')
 
 st.bar_chart(df_envios)
 #st.line_chart(df_envios)
