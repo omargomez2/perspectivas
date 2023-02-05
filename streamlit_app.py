@@ -28,9 +28,7 @@ def run_query(query):
 rows = run_query("SELECT paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from postgre_capleftus.public.perspectivas;")
 
 ccount = run_query("SELECT count(*) from postgre_capleftus.public.perspectivas;")
-#st.dataframe(rows)
 
-#index_labels=['Paper ID', 'Título', 'Enviado','Autores','Estado','Notas']
 
 st.title('Estado de envíos')
 
@@ -38,8 +36,7 @@ st.header('Número de envíos activos '+ str(ccount[0][0]))
 
 dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Días', 'Autores' , 'Estado' , 'Notas', 'Monitor'])
 dfp.Días = dfp.Días.round().astype(int)
-#dfp.Días.apply(np.round)
-#dfp.round({'Días': 0})
+dfp = dfp.set_index('Paper Id')
 
 st.dataframe(dfp, 1440, 540)
 
