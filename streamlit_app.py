@@ -48,4 +48,6 @@ rows_env = run_query("select DATE_PART('year', \"Fecha de envío\"::date) as añ
 df_envios = pandas.DataFrame(rows_env)
 st.dataframe(df_envios)
 
+st.bar_chart(df_envios)
+
 conn.close()
