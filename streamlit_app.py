@@ -43,4 +43,9 @@ dfp.Días = dfp.Días.round().astype(int)
 
 st.dataframe(dfp, 1440, 540)
 
+
+rows_env = run_query("select DATE_PART('year', \"Fecha de envío\"::date) as año, count(*) as envíos from articles_rp ar group by año;")
+df_envios = pandas.DataFrame(rows_env)
+st.dataframe(df_envios)
+
 conn.close()
