@@ -46,9 +46,11 @@ df_envios = pandas.DataFrame(rows_env, columns = ['Año' , 'Envíos'])
 df_envios.Año = df_envios.Año.round().astype(int)
 df_envios = df_envios.set_index('Año')
 
-st.dataframe(df_envios)
+#st.dataframe(df_envios)
+
+st.header('Número de envíos por año )
 
 st.bar_chart(df_envios)
-st.line_chart(df_envios)
+#st.line_chart(df_envios)
 
 conn.close()
