@@ -47,7 +47,7 @@ st.dataframe(dfp, 1440, 540)
 rows_env = run_query("select DATE_PART('year', \"Fecha de envío\"::date) as año, count(*) as envíos from articles_rp ar group by año order by año;")
 df_envios = pandas.DataFrame(rows_env, columns = ['Año' , 'Envíos'])
 df_envios.Año = df_envios.Año.round().astype(int)
-df_envios.set_index('Año')
+df_envios = df_envios.set_index('Año')
 
 st.dataframe(df_envios)
 
