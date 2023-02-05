@@ -51,5 +51,6 @@ df_envios.Año = df_envios.Año.round().astype(int)
 st.dataframe(df_envios)
 
 st.bar_chart(df_envios)
+st.line_chart(df_envios)
 
 conn.close()
