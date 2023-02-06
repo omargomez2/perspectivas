@@ -66,7 +66,7 @@ df_estado = pandas.DataFrame(rows_estado, columns = ['Año' , 'Envíos', 'En rev
 df_estado.Año = df_estado.Año.round().astype(int)
 df_estado = df_estado.set_index('Año')
 
-st.header('Histórico')
+st.header('Estado por año')
 st.bar_chart(df_estado)
 #st.line_chart(df_estado)
 
