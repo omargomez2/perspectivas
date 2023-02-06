@@ -35,7 +35,7 @@ rows_env_delta = run_query("SELECT * from envíos_delta;")
 df_env_delta = pandas.DataFrame(rows_env_delta, columns = ['Año' , 'Envíos', 'Delta'])
 st.dataframe(df_env_delta)
 
-col1, col2, col3, col4, col5, col6 = st.columns(3)
+col1, col2, col3, col4, col5, col6 = st.columns(6)
 col1.metric("Envíos 2018", df_env_delta.loc[0].at["Envíos"], df_env_delta.loc[0].at["Delta"])
 col2.metric("Envíos 2019", df_env_delta.loc[1].at["Envíos"], df_env_delta.loc[1].at["Delta"])
 col3.metric("Envíos 2020", df_env_delta.loc[2].at["Envíos"], df_env_delta.loc[2].at["Delta"])
