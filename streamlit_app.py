@@ -33,12 +33,12 @@ st.header('Número de envíos activos '+ str(ccount[0][0]))
 
 rows_env_delta = run_query("SELECT * from envíos_delta;")
 df_env_delta = pandas.DataFrame(rows_env_delta, columns = ['Año' , 'Envíos', 'Delta'])
-st.dataframe(df_env_delta, 1440, 540)
+st.dataframe(df_env_delta)
 
 col1, col2, col3 = st.columns(3)
-col1.metric("Envíos 2018", df_env_delta.at[0,"Envíos"] , df_env_delta.at[0,"Delta"])
-col2.metric("Envíos 2019", df_env_delta.at[1,"Envíos"] , df_env_delta.at[1,"Delta"])
-col3.metric("Envíos 2020", df_env_delta.at[2,"Envíos"] , df_env_delta.at[2,"Delta"])
+col1.metric("Envíos 2018", df_env_delta.loc[0].at["Envíos"], df_env_delta.loc[0].at["Delta"])
+col2.metric("Envíos 2019", df_env_delta.at[1,"Envíos"], df_env_delta.at[1,"Delta"])
+col3.metric("Envíos 2020", df_env_delta.at[2,"Envíos"], df_env_delta.at[2,"Delta"])
 
 
 rows = run_query("SELECT paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from postgre_capleftus.public.perspectivas;")
