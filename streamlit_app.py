@@ -62,9 +62,10 @@ st.header('Número de envíos por año')
 st.bar_chart(df_envios)
 
 rows_estado = run_query("select * from estado;")
-df_estado = pandas.DataFrame(rows_estado, columns = ['Año' , 'Envíos', 'En revisión','Publicados','Rechazados', 'En producción'])
-df_estado.Año = df_estado.Año.round().astype(int)
-df_estado = df_estado.set_index('Año')
+df_aux = pandas.DataFrame(rows_estado, columns = ['Año' , 'Envíos', 'En revisión','Publicados','Rechazados', 'En producción', 'Tasa'])
+df_aux.Año = df_aux.Año.round().astype(int)
+df_aux = df_aux.set_index('Año')
+df_estado = df_aux.drop(['En revisión','En producción','Tasa'], axis=1)
 
 st.header('Estado por año')
 st.bar_chart(df_estado)
