@@ -33,9 +33,6 @@ st.header('Número de envíos activos '+ str(ccount[0][0]))
 
 rows_env_delta = run_query("SELECT * from envíos_delta;")
 df_env_delta = pandas.DataFrame(rows_env_delta, columns = ['Año' , 'Envíos', 'Delta'])
-#df_env_delta.Año = df_env_delta.Año.round().astype(int)
-#df_env_delta.Delta = df_env_delta.Delta.round().astype(int)
-st.dataframe(df_env_delta)
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
 col1.metric("Envíos 2018", round(df_env_delta.loc[0].at["Envíos"]), round(df_env_delta.loc[0].at["Delta"]))
