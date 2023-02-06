@@ -26,7 +26,7 @@ def run_query(query):
         return cur.fetchall()
 
 
-st.title('Estado revista perspectivas')
+st.title('Revista Perspectivas')
 
 
 rows_env_delta = run_query("SELECT * from envíos_delta;")
