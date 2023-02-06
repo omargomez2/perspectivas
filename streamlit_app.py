@@ -72,12 +72,12 @@ st.bar_chart(df_estado)
 #st.line_chart(df_estado)
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
-col1.metric("Tasa A. 2018", round(df_aux.loc[0].at["Tasa"]), "")
-col2.metric("Tasa A. 2019", round(df_aux.loc[1].at["Tasa"]), "")
-col3.metric("Tasa A. 2020", round(df_aux.loc[2].at["Tasa"]), "")
-col4.metric("Tasa A. 2021", round(df_aux.loc[3].at["Tasa"]), "")
-col5.metric("Tasa A. 2022", round(df_aux.loc[4].at["Tasa"]), "")
-col6.metric("Tasa A. 2023", round(df_aux.loc[5].at["Tasa"]), "")
+col1.metric("Tasa A. 2018", df_aux.loc[0].at["Tasa"], "0")
+col2.metric("Tasa A. 2019", round(df_aux.loc[1].at["Tasa"]), "0")
+col3.metric("Tasa A. 2020", round(df_aux.loc[2].at["Tasa"]), "0")
+col4.metric("Tasa A. 2021", round(df_aux.loc[3].at["Tasa"]), "0")
+col5.metric("Tasa A. 2022", round(df_aux.loc[4].at["Tasa"]), "0")
+col6.metric("Tasa A. 2023", round(df_aux.loc[5].at["Tasa"]), "0")
 
 
 conn.close()
