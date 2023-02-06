@@ -26,10 +26,8 @@ def run_query(query):
         return cur.fetchall()
 
 
-st.title('Estado de envíos')
+st.title('Estado revista perspectivas')
 
-ccount = run_query("SELECT count(*) from postgre_capleftus.public.perspectivas;")
-st.header('Número de envíos activos '+ str(ccount[0][0]))
 
 rows_env_delta = run_query("SELECT * from envíos_delta;")
 df_env_delta = pandas.DataFrame(rows_env_delta, columns = ['Año' , 'Envíos', 'Delta'])
@@ -42,6 +40,9 @@ col4.metric("Envíos 2021", round(df_env_delta.loc[3].at["Envíos"]), round(df_e
 col5.metric("Envíos 2022", round(df_env_delta.loc[4].at["Envíos"]), round(df_env_delta.loc[4].at["Delta"]))
 col6.metric("Envíos 2023", round(df_env_delta.loc[5].at["Envíos"]), round(df_env_delta.loc[5].at["Delta"]))
 
+
+ccount = run_query("SELECT count(*) from postgre_capleftus.public.perspectivas;")
+st.header('Número de envíos activos: '+ str(ccount[0][0]))
 
 rows = run_query("SELECT paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from postgre_capleftus.public.perspectivas;")
 dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Días', 'Autores' , 'Estado' , 'Notas', 'Monitor'])
