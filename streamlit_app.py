@@ -35,10 +35,13 @@ rows_env_delta = run_query("SELECT * from envíos_delta;")
 df_env_delta = pandas.DataFrame(rows_env_delta, columns = ['Año' , 'Envíos', 'Delta'])
 st.dataframe(df_env_delta)
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4, col5, col6 = st.columns(3)
 col1.metric("Envíos 2018", df_env_delta.loc[0].at["Envíos"], df_env_delta.loc[0].at["Delta"])
-col2.metric("Envíos 2019", df_env_delta.at[1,"Envíos"], df_env_delta.at[1,"Delta"])
-col3.metric("Envíos 2020", df_env_delta.at[2,"Envíos"], df_env_delta.at[2,"Delta"])
+col2.metric("Envíos 2019", df_env_delta.loc[1].at["Envíos"], df_env_delta.loc[1].at["Delta"])
+col3.metric("Envíos 2020", df_env_delta.loc[2].at["Envíos"], df_env_delta.loc[2].at["Delta"])
+col4.metric("Envíos 2021", df_env_delta.loc[3].at["Envíos"], df_env_delta.loc[3].at["Delta"])
+col5.metric("Envíos 2022", df_env_delta.loc[4].at["Envíos"], df_env_delta.loc[4].at["Delta"])
+col6.metric("Envíos 2023", df_env_delta.loc[5].at["Envíos"], df_env_delta.loc[5].at["Delta"])
 
 
 rows = run_query("SELECT paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from postgre_capleftus.public.perspectivas;")
