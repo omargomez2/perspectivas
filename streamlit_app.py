@@ -95,7 +95,7 @@ st.header('Nube según palabras clave')
 df_words = pandas.DataFrame(rows_words, columns = ['Palabras clave'])
 
 keywords = ' '.join(df_words['Palabras clave'])
-#keywords = keywords.replace("de",'')
+keywords = keywords.replace('de','')
 #new_string = ' '.join([w for w in text.split() if len(w)>3])
 #st.write(text)
 wordcloud = WordCloud().generate(keywords)
