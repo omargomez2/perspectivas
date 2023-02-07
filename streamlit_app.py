@@ -1,4 +1,3 @@
-
 #-------------------
 # Author: OG 2023
 # url: https://omargomez2-perspectivas-streamlit-app-gn22jw.streamlit.app/
@@ -13,7 +12,7 @@ import psycopg2
 # Uses st.experimental_singleton to only run once.
 #-@st.experimental_singleton
 def init_connection():
-    return psycopg2.connect(**st.secrets["postgres"])
+    return psycopg2.connect(**st.secrets["postgres2"])
 
 conn = init_connection()
 
@@ -28,7 +27,6 @@ def run_query(query):
 
 st.title('Revista Perspectivas')
 
-
 rows_env_delta = run_query("SELECT * from envíos_delta;")
 df_env_delta = pandas.DataFrame(rows_env_delta, columns = ['Año' , 'Envíos', 'Delta'])
 
@@ -39,7 +37,6 @@ col3.metric("Envíos 2020", round(df_env_delta.loc[2].at["Envíos"]), round(df_e
 col4.metric("Envíos 2021", round(df_env_delta.loc[3].at["Envíos"]), round(df_env_delta.loc[3].at["Delta"]))
 col5.metric("Envíos 2022", round(df_env_delta.loc[4].at["Envíos"]), round(df_env_delta.loc[4].at["Delta"]))
 col6.metric("Envíos 2023", round(df_env_delta.loc[5].at["Envíos"]), round(df_env_delta.loc[5].at["Delta"]))
-
 
 ccount = run_query("SELECT count(*) from postgre_capleftus.public.perspectivas;")
 st.header('Número de envíos activos: '+ str(ccount[0][0]))
@@ -73,15 +70,15 @@ st.header('Estado por año')
 st.bar_chart(df_estado)
 #st.line_chart(df_estado)
 
-st.dataframe(df_aux)
+#st.dataframe(df_aux)
 
 col7, col8, col9, col10, col11, col12 = st.columns(6)
 col7.metric("Tasa A. 2018", df_aux.loc[0].at["Tasa"], "0")
-col8.metric("Tasa A. 2019", round(df_aux.loc[1].at["Tasa"]), "0")
-col9.metric("Tasa A. 2020", round(df_aux.loc[2].at["Tasa"]), "0")
-col10.metric("Tasa A. 2021", round(df_aux.loc[3].at["Tasa"]), "0")
-col11.metric("Tasa A. 2022", round(df_aux.loc[4].at["Tasa"]), "0")
-col12.metric("Tasa A. 2023", round(df_aux.loc[5].at["Tasa"]), "0")
+col8.metric("Tasa A. 2019", df_aux.loc[1].at["Tasa"], "0")
+col9.metric("Tasa A. 2020", df_aux.loc[2].at["Tasa"], "0")
+col10.metric("Tasa A. 2021", df_aux.loc[3].at["Tasa"], "0")
+col11.metric("Tasa A. 2022", df_aux.loc[4].at["Tasa"], "0")
+col12.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
 
 
 conn.close()
