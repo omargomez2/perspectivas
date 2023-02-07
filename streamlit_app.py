@@ -55,13 +55,9 @@ df_envios = df_auxx.drop(['En revisión','Publicados','Rechazados', 'En producci
 df_envios = df_envios.set_index('Año')
 
 #st.dataframe(df_envios)
-st.header('Número de envíos por año')
+st.header('Envíos por año')
 st.bar_chart(df_envios)
 
-#rows_estado = run_query("select * from estado;")
-#df_aux = pandas.DataFrame(rows_estado, columns = ['Año' , 'Envíos', 'En revisión','Publicados','Rechazados', 'En producción', 'Tasa', 'Delta env'])
-#df_aux.Año = df_aux.Año.round().astype(int)
-#df_aux = df_aux.set_index('Año')
 
 df_estado = df_auxx.drop(['En revisión', 'En producción', 'Tasa', 'Delta env','Delta tasa'], axis=1)
 df_estado = df_estado.set_index('Año')
@@ -70,14 +66,13 @@ st.header('Estado por año')
 st.bar_chart(df_estado)
 #st.line_chart(df_estado)
 
-#st.dataframe(df_aux)
 
 col7, col8, col9, col10, col11, col12 = st.columns(6)
 #col7.metric("Tasa A. 2018", df_aux.loc[0].at["Tasa"], "0")
 col8.metric("Tasa A. 2019", df_auxx.loc[1].at["Tasa"], df_auxx.loc[1].at["Delta tasa"])
-col9.metric("Tasa A. 2020", df_auxx.loc[2].at["Tasa"], df_auxx.loc[1].at["Delta tasa"])
-col10.metric("Tasa A. 2021", df_auxx.loc[3].at["Tasa"], df_auxx.loc[1].at["Delta tasa"])
-col11.metric("Tasa A. 2022", df_auxx.loc[4].at["Tasa"], df_auxx.loc[1].at["Delta tasa"])
+col9.metric("Tasa A. 2020", df_auxx.loc[2].at["Tasa"], df_auxx.loc[2].at["Delta tasa"])
+col10.metric("Tasa A. 2021", df_auxx.loc[3].at["Tasa"], df_auxx.loc[3].at["Delta tasa"])
+col11.metric("Tasa A. 2022", df_auxx.loc[4].at["Tasa"], df_auxx.loc[4].at["Delta tasa"])
 #col12.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
 
 
