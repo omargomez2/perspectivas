@@ -7,6 +7,8 @@
 import streamlit as st
 import pandas
 import psycopg2
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 
 # Initialize connection.
 # Uses st.experimental_singleton to only run once.
@@ -84,5 +86,5 @@ col10.metric("2021", str(round(df_aux.loc[3].at["Tasa"]))+'%', str(round(df_aux.
 col11.metric("2022", str(round(df_aux.loc[4].at["Tasa"]))+'%', str(round(df_aux.loc[4].at["Delta tasa"]))+'%')
 #col12.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
 
-res = ', '.join(dfp['Título'])
+res = ' '.join(dfp['Título'])
 st.write(res)
