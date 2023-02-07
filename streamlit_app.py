@@ -51,23 +51,19 @@ st.header('Número de envíos activos: '+ str(ccount))
 st.dataframe(dfp, 1440, 540)
 
 df_envios = df_auxx.drop(['En revisión','Publicados','Rechazados', 'En producción', 'Tasa', 'Delta env','Delta tasa'], axis=1)
-df_envios = df_envios.set_index('Año')
-
-#rows_env = run_query("select DATE_PART('year', \"Fecha de envío\"::date) as año, count(*) as envíos from articles_rp ar group by año order by año;")
-#df_envios = pandas.DataFrame(rows_env, columns = ['Año' , 'Envíos'])
 #df_envios.Año = df_envios.Año.round().astype(int)
-#df_envios = df_envios.set_index('Año')
+df_envios = df_envios.set_index('Año')
 
 #st.dataframe(df_envios)
 st.header('Número de envíos por año')
 st.bar_chart(df_envios)
 
-rows_estado = run_query("select * from estado;")
-df_aux = pandas.DataFrame(rows_estado, columns = ['Año' , 'Envíos', 'En revisión','Publicados','Rechazados', 'En producción', 'Tasa', 'Delta env'])
-df_aux.Año = df_aux.Año.round().astype(int)
+#rows_estado = run_query("select * from estado;")
+#df_aux = pandas.DataFrame(rows_estado, columns = ['Año' , 'Envíos', 'En revisión','Publicados','Rechazados', 'En producción', 'Tasa', 'Delta env'])
+#df_aux.Año = df_aux.Año.round().astype(int)
 #df_aux = df_aux.set_index('Año')
 
-df_estado = df_aux.drop(['En revisión','En producción','Tasa','Delta env'], axis=1)
+df_estado = df_auxx.drop(['En revisión', 'En producción', 'Tasa', 'Delta env','Delta tasa'], axis=1)
 df_estado = df_estado.set_index('Año')
 
 st.header('Estado por año')
@@ -78,10 +74,10 @@ st.bar_chart(df_estado)
 
 col7, col8, col9, col10, col11, col12 = st.columns(6)
 #col7.metric("Tasa A. 2018", df_aux.loc[0].at["Tasa"], "0")
-col8.metric("Tasa A. 2019", df_aux.loc[1].at["Tasa"], "0")
-col9.metric("Tasa A. 2020", df_aux.loc[2].at["Tasa"], "0")
-col10.metric("Tasa A. 2021", df_aux.loc[3].at["Tasa"], "0")
-col11.metric("Tasa A. 2022", df_aux.loc[4].at["Tasa"], "0")
+col8.metric("Tasa A. 2019", df_auxx.loc[1].at["Tasa"], df_auxx.loc[1].at["Delta tasa"])
+col9.metric("Tasa A. 2020", df_auxx.loc[2].at["Tasa"], df_auxx.loc[1].at["Delta tasa"])
+col10.metric("Tasa A. 2021", df_auxx.loc[3].at["Tasa"], df_auxx.loc[1].at["Delta tasa"])
+col11.metric("Tasa A. 2022", df_auxx.loc[4].at["Tasa"], df_auxx.loc[1].at["Delta tasa"])
 #col12.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
 
 
