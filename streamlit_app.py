@@ -34,7 +34,7 @@ df_auxx = pandas.DataFrame(rows_aux, columns = ['Año' , 'Envíos', 'En revisió
 #df_env_delta = pandas.DataFrame(rows_env_delta, columns = ['Año' , 'Envíos', 'Delta'])
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
-col1.metric("Envíos 2018", round(df_auxx.loc[0].at["Envíos"]), df_auxx.loc[0].at["Delta"])
+col1.metric("Envíos 2018", round(df_auxx.loc[0].at["Envíos"]), df_auxx.loc[0].at["Delta env"])
 col2.metric("Envíos 2019", round(df_auxx.loc[1].at["Envíos"]), round(df_auxx.loc[1].at["Delta env"]))
 col3.metric("Envíos 2020", round(df_auxx.loc[2].at["Envíos"]), round(df_auxx.loc[2].at["Delta env"]))
 col4.metric("Envíos 2021", round(df_auxx.loc[3].at["Envíos"]), round(df_auxx.loc[3].at["Delta env"]))
