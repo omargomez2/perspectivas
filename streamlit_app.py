@@ -24,14 +24,18 @@ def run_query(query):
         cur.execute(query)
         return cur.fetchall()
 
+rows_aux = run_query("select * from estado_d;")
+rows_papers = run_query("SELECT paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from postgre_capleftus.public.perspectivas;")
+
+conn.close()
+
 
 st.title('Revista Perspectivas')
 
-rows_aux = run_query("select * from estado_d;")
-df_aux = pandas.DataFrame(rows_aux, columns = ['Año' , 'Envíos', 'En revisión','Publicados','Rechazados', 'En producción', 'Tasa', 'Delta env','Delta tasa'])
-
 #---- Envíos
 st.header('Número de manuscritos enviados por año')
+df_aux = pandas.DataFrame(rows_aux, columns = ['Año' , 'Envíos', 'En revisión','Publicados','Rechazados', 'En producción', 'Tasa', 'Delta env','Delta tasa'])
+
 col1, col2, col3, col4, col5, col6 = st.columns(6)
 col1.metric("2018", round(df_aux.loc[0].at["Envíos"]), df_aux.loc[0].at["Delta env"])
 col2.metric("2019", round(df_aux.loc[1].at["Envíos"]), round(df_aux.loc[1].at["Delta env"]))
@@ -42,7 +46,6 @@ col6.metric("2023", round(df_aux.loc[5].at["Envíos"]), round(df_aux.loc[5].at["
 
 
 #--- Manuscritos activos
-rows_papers = run_query("SELECT paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from postgre_capleftus.public.perspectivas;")
 dfp = pandas.DataFrame(rows_papers, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Días', 'Autores' , 'Estado' , 'Notas', 'Monitor'])
 dfp.Días = dfp.Días.round().astype(int)
 dfp = dfp.set_index('Paper Id')
@@ -50,7 +53,6 @@ dfp = dfp.set_index('Paper Id')
 ccount = len(dfp.index)
 st.header('Número de envíos activos: '+ str(ccount))
 st.dataframe(dfp, 1440, 540)
-
 
 
 #---- Gráfico de enviados
@@ -81,6 +83,3 @@ col9.metric("2020", str(round(df_aux.loc[2].at["Tasa"]))+'%', str(round(df_aux.l
 col10.metric("2021", str(round(df_aux.loc[3].at["Tasa"]))+'%', str(round(df_aux.loc[3].at["Delta tasa"]))+'%')
 col11.metric("2022", str(round(df_aux.loc[4].at["Tasa"]))+'%', str(round(df_aux.loc[4].at["Delta tasa"]))+'%')
 #col12.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
-
-
-conn.close()
