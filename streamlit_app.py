@@ -85,5 +85,7 @@ col11.metric("2022", str(round(df_aux.loc[4].at["Tasa"]))+'%', str(round(df_aux.
 #col12.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
 
 
-dfw = dfp.groupby(['Título']).sum()
+dfw = dfp.agg(
+    {'Título': lambda x: ', '.join(x)}
+)
 st.dataframe(dfw)
