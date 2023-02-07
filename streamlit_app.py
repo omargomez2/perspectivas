@@ -91,13 +91,12 @@ col5.metric('2022', str(round(df_aux.loc[4].at['Tasa']))+'%', str(round(df_aux.l
 st.subheader('Tasa de aceptación general: '+str(round(df_aux['Tasa'].mean()))+'%')
 
 #--Nube de palabras
-st.header('Nube según palabras clave')
+st.header('Nube de palabras clave de la revista')
 df_words = pandas.DataFrame(rows_words, columns = ['Palabras clave'])
 
 keywords = ' '.join(df_words['Palabras clave'])
 keywords = keywords.replace('de ','')
 #new_string = ' '.join([w for w in text.split() if len(w)>3])
-#st.write(text)
 wordcloud = WordCloud().generate(keywords)
 
 # Display the generated image:
