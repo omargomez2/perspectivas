@@ -91,7 +91,8 @@ text = ' '.join(dfp['Título'])
 wordcloud = WordCloud().generate(text)
 
 # Display the generated image:
+fig, ax = plt.subplots()
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
 plt.show()
-st.pyplot()
+st.pyplot(fig)
