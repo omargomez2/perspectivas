@@ -28,7 +28,7 @@ def run_query(query):
 
 rows_aux = run_query("select * from estado_d;")
 rows_papers = run_query("SELECT paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from postgre_capleftus.public.perspectivas;")
-
+rows_words = run_query("select \"Palabras clave\" from articles_rp ar;")
 conn.close()
 
 
@@ -91,11 +91,12 @@ col5.metric("2022", str(round(df_aux.loc[4].at["Tasa"]))+'%', str(round(df_aux.l
 
 #--Nube de palabras
 st.header('Nube de palabras según títulos de envíos activos')
+df_words = pandas.DataFrame(rows_words, columns = ['Palabras clave'])
 
-text = ' '.join(dfp['Título'])
-new_string = ' '.join([w for w in text.split() if len(w)>4])
+keywords = ' '.join(df_words['Palabras clave'])
+#new_string = ' '.join([w for w in text.split() if len(w)>3])
 #st.write(text)
-wordcloud = WordCloud().generate(new_string)
+wordcloud = WordCloud().generate(keywords)
 
 # Display the generated image:
 fig, ax = plt.subplots()
