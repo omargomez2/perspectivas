@@ -30,8 +30,6 @@ st.title('Revista Perspectivas')
 rows_aux = run_query("select * from estado_d;")
 df_auxx = pandas.DataFrame(rows_aux, columns = ['Año' , 'Envíos', 'En revisión','Publicados','Rechazados', 'En producción', 'Tasa', 'Delta env','Delta tasa'])
 
-#rows_env_delta = run_query("SELECT * from envíos_delta;")
-#df_env_delta = pandas.DataFrame(rows_env_delta, columns = ['Año' , 'Envíos', 'Delta'])
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
 col1.metric("Envíos 2018", round(df_auxx.loc[0].at["Envíos"]), df_auxx.loc[0].at["Delta env"])
@@ -41,22 +39,24 @@ col4.metric("Envíos 2021", round(df_auxx.loc[3].at["Envíos"]), round(df_auxx.l
 col5.metric("Envíos 2022", round(df_auxx.loc[4].at["Envíos"]), round(df_auxx.loc[4].at["Delta env"]))
 col6.metric("Envíos 2023", round(df_auxx.loc[5].at["Envíos"]), round(df_auxx.loc[5].at["Delta env"]))
 
-ccount = len(df_auxx.index)
-#run_query("SELECT count(*) from postgre_capleftus.public.perspectivas;")
-st.header('Número de envíos activos: '+ str(ccount))
 
-rows = run_query("SELECT paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from postgre_capleftus.public.perspectivas;")
-dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Días', 'Autores' , 'Estado' , 'Notas', 'Monitor'])
+
+rows_papers = run_query("SELECT paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from postgre_capleftus.public.perspectivas;")
+dfp = pandas.DataFrame(rows_papers, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Días', 'Autores' , 'Estado' , 'Notas', 'Monitor'])
 dfp.Días = dfp.Días.round().astype(int)
 dfp = dfp.set_index('Paper Id')
 
+ccount = len(dfp.index)
+st.header('Número de envíos activos: '+ str(ccount))
 st.dataframe(dfp, 1440, 540)
 
-
-rows_env = run_query("select DATE_PART('year', \"Fecha de envío\"::date) as año, count(*) as envíos from articles_rp ar group by año order by año;")
-df_envios = pandas.DataFrame(rows_env, columns = ['Año' , 'Envíos'])
-df_envios.Año = df_envios.Año.round().astype(int)
+df_envios = df_auxx.drop(['En revisión','Publicados','Rechazados', 'En producción', 'Tasa', 'Delta env','Delta tasa'], axis=1)
 df_envios = df_envios.set_index('Año')
+
+#rows_env = run_query("select DATE_PART('year', \"Fecha de envío\"::date) as año, count(*) as envíos from articles_rp ar group by año order by año;")
+#df_envios = pandas.DataFrame(rows_env, columns = ['Año' , 'Envíos'])
+#df_envios.Año = df_envios.Año.round().astype(int)
+#df_envios = df_envios.set_index('Año')
 
 #st.dataframe(df_envios)
 st.header('Número de envíos por año')
