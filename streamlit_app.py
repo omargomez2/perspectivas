@@ -88,7 +88,7 @@ col4.metric('2021', str(round(df_aux.loc[3].at['Tasa']))+'%', str(round(df_aux.l
 col5.metric('2022', str(round(df_aux.loc[4].at['Tasa']))+'%', str(round(df_aux.loc[4].at['Delta tasa']))+'%')
 #col6.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
 
-st.subheader('Tasa de aceptación general: '+str(df_aux['Tasa']).mean())
+st.subheader('Tasa de aceptación general: '+str(df_aux['Tasa'].mean()))
 
 #--Nube de palabras
 st.header('Nube de palabras según títulos de envíos activos')
