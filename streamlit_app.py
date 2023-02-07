@@ -2,7 +2,7 @@
 # Author: OG 2023
 # url: https://omargomez2-perspectivas-streamlit-app-gn22jw.streamlit.app/
 # Description: Perspectivas Journal Report
-#------------------
+#-------------------
 
 import streamlit as st
 import pandas
@@ -27,19 +27,23 @@ def run_query(query):
 
 st.title('Revista Perspectivas')
 
-rows_env_delta = run_query("SELECT * from envíos_delta;")
-df_env_delta = pandas.DataFrame(rows_env_delta, columns = ['Año' , 'Envíos', 'Delta'])
+rows_aux = run_query("select * from estado_d;")
+df_auxx = pandas.DataFrame(rows_aux, columns = ['Año' , 'Envíos', 'En revisión','Publicados','Rechazados', 'En producción', 'Tasa', 'Delta env','Delta tasa'])
+
+#rows_env_delta = run_query("SELECT * from envíos_delta;")
+#df_env_delta = pandas.DataFrame(rows_env_delta, columns = ['Año' , 'Envíos', 'Delta'])
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
-col1.metric("Envíos 2018", round(df_env_delta.loc[0].at["Envíos"]), df_env_delta.loc[0].at["Delta"])
-col2.metric("Envíos 2019", round(df_env_delta.loc[1].at["Envíos"]), round(df_env_delta.loc[1].at["Delta"]))
-col3.metric("Envíos 2020", round(df_env_delta.loc[2].at["Envíos"]), round(df_env_delta.loc[2].at["Delta"]))
-col4.metric("Envíos 2021", round(df_env_delta.loc[3].at["Envíos"]), round(df_env_delta.loc[3].at["Delta"]))
-col5.metric("Envíos 2022", round(df_env_delta.loc[4].at["Envíos"]), round(df_env_delta.loc[4].at["Delta"]))
-col6.metric("Envíos 2023", round(df_env_delta.loc[5].at["Envíos"]), round(df_env_delta.loc[5].at["Delta"]))
+col1.metric("Envíos 2018", round(df_auxx.loc[0].at["Envíos"]), df_auxx.loc[0].at["Delta"])
+col2.metric("Envíos 2019", round(df_auxx.loc[1].at["Envíos"]), round(df_auxx.loc[1].at["Delta env"]))
+col3.metric("Envíos 2020", round(df_auxx.loc[2].at["Envíos"]), round(df_auxx.loc[2].at["Delta env"]))
+col4.metric("Envíos 2021", round(df_auxx.loc[3].at["Envíos"]), round(df_auxx.loc[3].at["Delta env"]))
+col5.metric("Envíos 2022", round(df_auxx.loc[4].at["Envíos"]), round(df_auxx.loc[4].at["Delta env"]))
+col6.metric("Envíos 2023", round(df_auxx.loc[5].at["Envíos"]), round(df_auxx.loc[5].at["Delta env"]))
 
-ccount = run_query("SELECT count(*) from postgre_capleftus.public.perspectivas;")
-st.header('Número de envíos activos: '+ str(ccount[0][0]))
+ccount = len(df_auxx.index)
+#run_query("SELECT count(*) from postgre_capleftus.public.perspectivas;")
+st.header('Número de envíos activos: '+ str(ccount))
 
 rows = run_query("SELECT paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from postgre_capleftus.public.perspectivas;")
 dfp = pandas.DataFrame(rows, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Días', 'Autores' , 'Estado' , 'Notas', 'Monitor'])
@@ -73,12 +77,12 @@ st.bar_chart(df_estado)
 #st.dataframe(df_aux)
 
 col7, col8, col9, col10, col11, col12 = st.columns(6)
-col7.metric("Tasa A. 2018", df_aux.loc[0].at["Tasa"], "0")
+#col7.metric("Tasa A. 2018", df_aux.loc[0].at["Tasa"], "0")
 col8.metric("Tasa A. 2019", df_aux.loc[1].at["Tasa"], "0")
 col9.metric("Tasa A. 2020", df_aux.loc[2].at["Tasa"], "0")
 col10.metric("Tasa A. 2021", df_aux.loc[3].at["Tasa"], "0")
 col11.metric("Tasa A. 2022", df_aux.loc[4].at["Tasa"], "0")
-col12.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
+#col12.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
 
 
 conn.close()
