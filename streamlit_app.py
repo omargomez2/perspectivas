@@ -85,4 +85,4 @@ col11.metric("2022", str(round(df_aux.loc[4].at["Tasa"]))+'%', str(round(df_aux.
 #col12.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
 
 res = ', '.join(dfp['Título'])
-st.dataframe(res)
+st.write(res)
