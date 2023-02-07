@@ -40,12 +40,12 @@ df_aux = pandas.DataFrame(rows_aux, columns = ['Año' , 'Envíos', 'En revisión
 
 col1, col2, col3 = st.columns(3)
 col4, col5, col6 = st.columns(3)
-col1.metric("2018", round(df_aux.loc[0].at["Envíos"]), df_aux.loc[0].at["Delta env"])
-col2.metric("2019", round(df_aux.loc[1].at["Envíos"]), round(df_aux.loc[1].at["Delta env"]))
-col3.metric("2020", round(df_aux.loc[2].at["Envíos"]), round(df_aux.loc[2].at["Delta env"]))
-col4.metric("2021", round(df_aux.loc[3].at["Envíos"]), round(df_aux.loc[3].at["Delta env"]))
-col5.metric("2022", round(df_aux.loc[4].at["Envíos"]), round(df_aux.loc[4].at["Delta env"]))
-col6.metric("2023", round(df_aux.loc[5].at["Envíos"]), round(df_aux.loc[5].at["Delta env"]))
+col1.metric('2018', round(df_aux.loc[0].at['Envíos']), df_aux.loc[0].at['Delta env'])
+col2.metric('2019', round(df_aux.loc[1].at['Envíos']), round(df_aux.loc[1].at['Delta env']))
+col3.metric('2020', round(df_aux.loc[2].at['Envíos']), round(df_aux.loc[2].at['Delta env']))
+col4.metric('2021', round(df_aux.loc[3].at['Envíos']), round(df_aux.loc[3].at['Delta env']))
+col5.metric('2022', round(df_aux.loc[4].at['Envíos']), round(df_aux.loc[4].at['Delta env']))
+col6.metric('2023', round(df_aux.loc[5].at['Envíos']), round(df_aux.loc[5].at['Delta env']))
 
 
 #--- Manuscritos activos
@@ -81,19 +81,21 @@ st.bar_chart(df_estado)
 st.header('Tasa de aceptación por año')
 col1, col2, col3 = st.columns(3)
 col4, col5, col6 = st.columns(3)
-col1.metric("2018", df_aux.loc[0].at["Tasa"], df_aux.loc[1].at["Delta tasa"])
-col2.metric("2019", str(round(df_aux.loc[1].at["Tasa"]))+'%', df_aux.loc[1].at["Delta tasa"])
-col3.metric("2020", str(round(df_aux.loc[2].at["Tasa"]))+'%', str(round(df_aux.loc[2].at["Delta tasa"]))+'%')
-col4.metric("2021", str(round(df_aux.loc[3].at["Tasa"]))+'%', str(round(df_aux.loc[3].at["Delta tasa"]))+'%')
-col5.metric("2022", str(round(df_aux.loc[4].at["Tasa"]))+'%', str(round(df_aux.loc[4].at["Delta tasa"]))+'%')
+col1.metric('2018', df_aux.loc[0].at['Tasa'], df_aux.loc[1].at['Delta tasa'])
+col2.metric('2019', str(round(df_aux.loc[1].at['Tasa']))+'%', df_aux.loc[1].at['Delta tasa'])
+col3.metric('2020', str(round(df_aux.loc[2].at['Tasa']))+'%', str(round(df_aux.loc[2].at['Delta tasa']))+'%')
+col4.metric('2021', str(round(df_aux.loc[3].at['Tasa']))+'%', str(round(df_aux.loc[3].at['Delta tasa']))+'%')
+col5.metric('2022', str(round(df_aux.loc[4].at['Tasa']))+'%', str(round(df_aux.loc[4].at['Delta tasa']))+'%')
 #col6.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
 
+st.subheader('Tasa de aceptación general: '+str(df_aux['Tasa']).mean())
 
 #--Nube de palabras
 st.header('Nube de palabras según títulos de envíos activos')
 df_words = pandas.DataFrame(rows_words, columns = ['Palabras clave'])
 
 keywords = ' '.join(df_words['Palabras clave'])
+keywords = keywords.replace("de",'')
 #new_string = ' '.join([w for w in text.split() if len(w)>3])
 #st.write(text)
 wordcloud = WordCloud().generate(keywords)
