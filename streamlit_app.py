@@ -91,8 +91,9 @@ col11.metric("2022", str(round(df_aux.loc[4].at["Tasa"]))+'%', str(round(df_aux.
 st.header('Nube de palabras según títulos de envíos activos')
 
 text = ' '.join(dfp['Título'])
+new_string = ' '.join([w for w in text.split() if len(w)>3])
 #st.write(text)
-wordcloud = WordCloud().generate(text)
+wordcloud = WordCloud().generate(new_string)
 
 # Display the generated image:
 fig, ax = plt.subplots()
