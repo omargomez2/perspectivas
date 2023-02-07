@@ -84,6 +84,5 @@ col10.metric("2021", str(round(df_aux.loc[3].at["Tasa"]))+'%', str(round(df_aux.
 col11.metric("2022", str(round(df_aux.loc[4].at["Tasa"]))+'%', str(round(df_aux.loc[4].at["Delta tasa"]))+'%')
 #col12.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
 
-
-dfw = dfp.groupby(['Estado'])['Título'].transform(lambda x: ' '.join(x))
-st.dataframe(dfw)
+res = ', '.join(dfp['Título'])
+st.dataframe(res)
