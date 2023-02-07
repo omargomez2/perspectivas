@@ -27,7 +27,7 @@ def run_query(query):
         return cur.fetchall()
 
 rows_aux = run_query("select * from estado_d;")
-rows_papers = run_query("SELECT paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from postgre_capleftus.public.perspectivas;")
+rows_papers = run_query("select paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from perspectivas;")
 rows_words = run_query("select \"Palabras clave\" from articles_rp ar;")
 conn.close()
 
