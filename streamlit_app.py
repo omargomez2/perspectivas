@@ -76,9 +76,9 @@ st.header('Tasa de aceptación por año')
 col7, col8, col9, col10, col11, col12 = st.columns(6)
 #col7.metric("Tasa A. 2018", df_aux.loc[0].at["Tasa"], "0")
 col8.metric("2019", str(round(df_auxx.loc[1].at["Tasa"]))+'%', df_auxx.loc[1].at["Delta tasa"])
-col9.metric("2020", round(df_auxx.loc[2].at["Tasa"]), round(df_auxx.loc[2].at["Delta tasa"]))
-col10.metric("2021", round(df_auxx.loc[3].at["Tasa"]), round(df_auxx.loc[3].at["Delta tasa"]))
-col11.metric("2022", round(df_auxx.loc[4].at["Tasa"]), round(df_auxx.loc[4].at["Delta tasa"]))
+col9.metric("2020", str(round(df_auxx.loc[2].at["Tasa"]))+'%', str(round(df_auxx.loc[2].at["Delta tasa"]))+'%')
+col10.metric("2021", str(round(df_auxx.loc[3].at["Tasa"]))+'%', str(round(df_auxx.loc[3].at["Delta tasa"]))+'%')
+col11.metric("2022", str(round(df_auxx.loc[4].at["Tasa"]))+'%', str(round(df_auxx.loc[4].at["Delta tasa"]))+'%')
 #col12.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
 
 
