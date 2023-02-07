@@ -12,7 +12,7 @@ import psycopg2
 # Uses st.experimental_singleton to only run once.
 #-@st.experimental_singleton
 def init_connection():
-    return psycopg2.connect(**st.secrets["postgres2"])
+    return psycopg2.connect(**st.secrets["postgres"])
 
 conn = init_connection()
 
