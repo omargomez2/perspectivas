@@ -74,7 +74,7 @@ st.bar_chart(df_estado)
 #---Métrica tasa de aceptación
 st.header('Tasa de aceptación por año')
 col7, col8, col9, col10, col11, col12 = st.columns(6)
-col7.metric("Tasa A. 2018", df_aux.loc[0].at["Tasa"], df_aux.loc[1].at["Delta tasa"])
+col7.metric("2018", df_aux.loc[0].at["Tasa"], df_aux.loc[1].at["Delta tasa"])
 col8.metric("2019", str(round(df_aux.loc[1].at["Tasa"]))+'%', df_aux.loc[1].at["Delta tasa"])
 col9.metric("2020", str(round(df_aux.loc[2].at["Tasa"]))+'%', str(round(df_aux.loc[2].at["Delta tasa"]))+'%')
 col10.metric("2021", str(round(df_aux.loc[3].at["Tasa"]))+'%', str(round(df_aux.loc[3].at["Delta tasa"]))+'%')
