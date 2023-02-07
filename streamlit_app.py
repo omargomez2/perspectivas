@@ -91,7 +91,7 @@ col5.metric('2022', str(round(df_aux.loc[4].at['Tasa']))+'%', str(round(df_aux.l
 st.subheader('Tasa de aceptación general: '+str(round(df_aux['Tasa'].mean()))+'%')
 
 #--Nube de palabras
-st.header('Nube de palabras según títulos de envíos activos')
+st.header('Nube según palabras clave')
 df_words = pandas.DataFrame(rows_words, columns = ['Palabras clave'])
 
 keywords = ' '.join(df_words['Palabras clave'])
