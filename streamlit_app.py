@@ -92,6 +92,8 @@ st.subheader('Tasa de aceptación general: '+str(round(df_aux['Tasa'].mean()))+'
 st.header('Nube de palabras clave de la revista')
 df_words = pandas.DataFrame(rows_words, columns = ['Palabras clave'])
 
+st.dataframe(df_words)
+
 keywords = ' '.join(df_words['Palabras clave'])
 keywords = keywords.replace('de ','')
 #new_string = ' '.join([w for w in text.split() if len(w)>3])
