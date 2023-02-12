@@ -27,7 +27,7 @@ def run_query(query):
         return cur.fetchall()
 
 rows_aux = run_query("select * from datamart;")
-rows_papers = run_query("select * activos;")
+rows_papers = run_query("select * from activos;")
 rows_words = run_query("select \"palabras clave\" from keywords;")
 conn.close()
 
