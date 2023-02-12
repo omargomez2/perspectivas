@@ -92,9 +92,15 @@ st.subheader('Tasa de aceptación general: '+str(round(df_aux['Tasa'].mean()))+'
 st.header('Nube de palabras clave de la revista')
 df_words = pandas.DataFrame(rows_words, columns = ['Palabras clave'])
 
+# initialize list elements
+data = ["hola omar","omar hola","hola"]
+  
+# Create the pandas DataFrame with column name is provided explicitly
+df = pandas.DataFrame(data, columns=['Palabras clave'])
+
 st.dataframe(df_words)
 try:
-    kwords = ' '.join(df_words['Palabras clave'])
+    kwords = ' '.join(df['Palabras clave'])
     kwords = kwords.replace('de ','')
 except Exception as e:
         st.write(e)
