@@ -26,9 +26,9 @@ def run_query(query):
         cur.execute(query)
         return cur.fetchall()
 
-rows_aux = run_query("select * from estado_d;")
-rows_papers = run_query("select paper, titulo, enviado, DATE_PART('day', CURRENT_DATE::timestamp - enviado::timestamp) as días, autores, estado, notas, monitor from perspectivas;")
-rows_words = run_query("select \"Palabras clave\" from articles_rp ar;")
+rows_aux = run_query("select * from datamart;")
+rows_papers = run_query("select * activos;")
+rows_words = run_query("select \"palabras clave\" from keywords;")
 conn.close()
 
 
@@ -36,19 +36,19 @@ st.title('Revista Perspectivas')
 
 #---- Envíos
 st.header('Número de manuscritos enviados por año')
-df_aux = pandas.DataFrame(rows_aux, columns = ['Año' , 'Envíos', 'En revisión','Publicados','Rechazados', 'En producción', 'Tasa', 'Delta env','Delta tasa'])
+df_aux = pandas.DataFrame(rows_aux, columns = ['Año','Envíos','Envíos d','Publicados','Publicados d','Rechazados','Rechazados d','Tasa','Tasa d'])
 
 col1, col2, col3, col4, col5, col6 = st.columns(6)
-col1.metric('2018', round(df_aux.loc[0].at['Envíos']), df_aux.loc[0].at['Delta env'])
-col2.metric('2019', round(df_aux.loc[1].at['Envíos']), round(df_aux.loc[1].at['Delta env']))
-col3.metric('2020', round(df_aux.loc[2].at['Envíos']), round(df_aux.loc[2].at['Delta env']))
-col4.metric('2021', round(df_aux.loc[3].at['Envíos']), round(df_aux.loc[3].at['Delta env']))
-col5.metric('2022', round(df_aux.loc[4].at['Envíos']), round(df_aux.loc[4].at['Delta env']))
-col6.metric('2023', round(df_aux.loc[5].at['Envíos']), round(df_aux.loc[5].at['Delta env']))
+col1.metric('2018', round(df_aux.loc[0].at['Envíos']), df_aux.loc[0].at['Envíos d'])
+col2.metric('2019', round(df_aux.loc[1].at['Envíos']), round(df_aux.loc[1].at['Envíos d']))
+col3.metric('2020', round(df_aux.loc[2].at['Envíos']), round(df_aux.loc[2].at['Envíos d']))
+col4.metric('2021', round(df_aux.loc[3].at['Envíos']), round(df_aux.loc[3].at['Envíos d']))
+col5.metric('2022', round(df_aux.loc[4].at['Envíos']), round(df_aux.loc[4].at['Envíos d']))
+col6.metric('2023', round(df_aux.loc[5].at['Envíos']), round(df_aux.loc[5].at['Envíos d']))
 
 
 #--- Manuscritos activos
-dfp = pandas.DataFrame(rows_papers, columns = ['Paper Id' , 'Título' , 'Enviado' , 'Días', 'Autores' , 'Estado' , 'Notas', 'Monitor'])
+dfp = pandas.DataFrame(rows_papers, columns = ['Paper Id','Título','Autor','Enviado','Días','Estado','Ult. Modificación','Decisión','Fecha Decisión'])
 dfp.Días = dfp.Días.round().astype(int)
 dfp = dfp.set_index('Paper Id')
 
@@ -58,7 +58,7 @@ st.dataframe(dfp, 1440, 540)
 
 
 #---- Gráfico de enviados
-df_envios = df_aux.drop(['En revisión','Publicados','Rechazados', 'En producción', 'Tasa', 'Delta env','Delta tasa'], axis=1)
+df_envios = df_aux.drop(['Envíos d','Publicados','Publicados d','Rechazados','Rechazados d','Tasa','Tasa d'], axis=1)
 #df_envios.Año = df_envios.Año.round().astype(int)
 df_envios = df_envios.set_index('Año')
 
@@ -67,8 +67,8 @@ st.bar_chart(df_envios)
 #st.dataframe(df_envios)
 
 
-#---Gráfico de estado
-df_estado = df_aux.drop(['En revisión', 'En producción', 'Tasa', 'Delta env','Delta tasa'], axis=1)
+#---Gráfico de resumen
+df_estado = df_aux.drop(['Envíos d','Publicados d','Rechazados d','Tasa','Tasa d'], axis=1)
 df_estado = df_estado.set_index('Año')
 
 st.header('Estado por año')
@@ -79,11 +79,11 @@ st.bar_chart(df_estado)
 #---Métrica tasa de aceptación
 st.header('Tasa de aceptación por año')
 col1, col2, col3, col4, col5, col6 = st.columns(6)
-col1.metric('2018', df_aux.loc[0].at['Tasa'], df_aux.loc[1].at['Delta tasa'])
-col2.metric('2019', str(round(df_aux.loc[1].at['Tasa']))+'%', df_aux.loc[1].at['Delta tasa'])
-col3.metric('2020', str(round(df_aux.loc[2].at['Tasa']))+'%', str(round(df_aux.loc[2].at['Delta tasa']))+'%')
-col4.metric('2021', str(round(df_aux.loc[3].at['Tasa']))+'%', str(round(df_aux.loc[3].at['Delta tasa']))+'%')
-col5.metric('2022', str(round(df_aux.loc[4].at['Tasa']))+'%', str(round(df_aux.loc[4].at['Delta tasa']))+'%')
+col1.metric('2018', df_aux.loc[0].at['Tasa'], df_aux.loc[1].at['Tasa d'])
+col2.metric('2019', str(round(df_aux.loc[1].at['Tasa']))+'%', df_aux.loc[1].at['Tasa d'])
+col3.metric('2020', str(round(df_aux.loc[2].at['Tasa']))+'%', str(round(df_aux.loc[2].at['Tasa d']))+'%')
+col4.metric('2021', str(round(df_aux.loc[3].at['Tasa']))+'%', str(round(df_aux.loc[3].at['Tasa d']))+'%')
+col5.metric('2022', str(round(df_aux.loc[4].at['Tasa']))+'%', str(round(df_aux.loc[4].at['Tasad d']))+'%')
 #col6.metric("Tasa A. 2023", df_aux.loc[5].at["Tasa"], "0")
 
 st.subheader('Tasa de aceptación general: '+str(round(df_aux['Tasa'].mean()))+'%')
