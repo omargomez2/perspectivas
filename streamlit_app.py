@@ -93,21 +93,21 @@ st.header('Nube de palabras clave de la revista')
 df_words = pandas.DataFrame(rows_words, columns = ['Palabras clave'])
 
 # initialize list elements
-data = ["hola omar","omar hola","hola"]
+#data = ["hola omar","omar hola","hola"]
   
 # Create the pandas DataFrame with column name is provided explicitly
-df = pandas.DataFrame(data, columns=['Palabras clave'])
+#df = pandas.DataFrame(data, columns=['Palabras clave'])
 
 st.dataframe(df_words)
 try:
-    kwords = ' '.join(df['Palabras clave'])
-    kwords = kwords.replace('de ','')
+    keywords = ' '.join(df_words['Palabras clave'])
+    keywords = keywords.replace('de ','')
 except Exception as e:
         st.write(e)
 
 #new_string = ' '.join([w for w in text.split() if len(w)>3])
 wordcloud = WordCloud(background_color='white', colormap='gist_heat_r', max_words=60, random_state=50)
-wordcloud.generate(kwords)
+wordcloud.generate(keywords)
 
 # Display the generated image:
 fig, ax = plt.subplots()
