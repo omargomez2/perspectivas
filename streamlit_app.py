@@ -93,9 +93,12 @@ st.header('Nube de palabras clave de la revista')
 df_words = pandas.DataFrame(rows_words, columns = ['Palabras clave'])
 
 st.dataframe(df_words)
+try:
+    kwords = ' '.join(df_words['Palabras clave'])
+    kwords = kwords.replace('de ','')
+except Exception as e:
+        st.write(e)
 
-kwords = ' '.join(df_words['Palabras clave'])
-kwords = kwords.replace('de ','')
 #new_string = ' '.join([w for w in text.split() if len(w)>3])
 wordcloud = WordCloud(background_color='white', colormap='gist_heat_r', max_words=60, random_state=50)
 wordcloud.generate(kwords)
