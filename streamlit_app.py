@@ -10,6 +10,13 @@ import psycopg2
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 
+
+st.set_page_config(
+    page_title="Estado manuscritos recibidos revista Perspectivas",
+    page_icon="📜",
+)
+
+
 # Initialize connection.
 # Uses st.experimental_singleton to only run once.
 #-@st.experimental_singleton
