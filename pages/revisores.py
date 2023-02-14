@@ -25,8 +25,9 @@ def run_query(query):
         return cur.fetchall()
 
 rows_rev_act = run_query("select id, título, envío, estado, decisión, \"fecha decisión\", revisor, asignada, completado, date_part('day', current_date::timestamp-asignada::timestamp) as \"días desde asignación\" from activos_rev;")
+conn.close()
 
 #--- Manuscritos activos
-dfp = pandas.DataFrame(rows_rev_act, columns = ['Paper Id','Título','Envío','Estado','Decisión','Fecha Decisión','Revisor','F. Asignación','F. Completado','Días desde F. Asig.'])
-dfp['Días desde F. Asig.'] = dfp['Días desde F. Asig.'].round().astype(int)
-dfp = dfp.set_index('Paper Id')
+#dfp = pandas.DataFrame(rows_rev_act, columns = ['Paper Id','Título','Envío','Estado','Decisión','Fecha Decisión','Revisor','F. Asignación','F. Completado','Días desde F. Asig.'])
+#dfp['Días desde F. Asig.'] = dfp['Días desde F. Asig.'].round().astype(int)
+#dfp = dfp.set_index('Paper Id')
