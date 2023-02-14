@@ -30,7 +30,7 @@ conn.close()
 #--- Manuscritos activos
 dfp = pandas.DataFrame(rows_rev_act, columns = ['Paper Id','Título','Envío','Estado','Decisión','Fecha Decisión','Revisor','F. Asignación','F. Completado','Días desde F. Asig.'])
 #dfp['Días desde F. Asig.'] = dfp['Días desde F. Asig.'].round().astype(int)
-#dfp = dfp.set_index('Paper Id')
+dfp = dfp.set_index('Paper Id')
 
 ccount = len(dfp.index)
 st.header('Información de revisores y envíos activos: '+ str(ccount))
