@@ -38,10 +38,10 @@ rows_papers = run_query("select id, título, autor, envío, date_part('day', cur
 rows_words = run_query("select \"palabras clave\" from keywords;")
 conn.close()
 
-st.sidebar.success("Seleccione una opción")
-
 
 st.title('Revista Perspectivas')
+
+st.sidebar.success("Seleccione una opción")
 
 #---- Envíos
 st.header('Número de manuscritos enviados por año')
