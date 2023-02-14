@@ -41,7 +41,7 @@ conn.close()
 
 st.title('Revista Perspectivas')
 
-st.sidebar.success("Seleccione una opción")
+st.sidebar.success("Principal")
 
 #---- Envíos
 st.header('Número de manuscritos enviados por año')
