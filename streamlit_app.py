@@ -57,13 +57,14 @@ col6.metric('2023', round(df_aux.loc[5].at['Envíos']), round(df_aux.loc[5].at['
 
 
 #--- Manuscritos activos
-dfp = pandas.DataFrame(rows_papers, columns = ['Paper Id','Título','Autor','Enviado','Días','Estado','Ult. Modificación','Decisión','Fecha Decisión'])
+dfp = pandas.DataFrame(rows_papers, columns = ['Id','Título','Autor','Enviado','Días','Estado','Ult. Modificación','Decisión','Fecha Decisión'])
 dfp.Días = dfp.Días.round().astype(int)
-dfp = dfp.set_index('Paper Id')
+dfp = dfp.set_index('Id')
 
+#dfp.drop_duplicates(subset=['Id'])
 ccount = len(dfp.index)
-st.header('Número de envíos activos: '+ str(ccount))
-st.dataframe(dfp, 1440, 540)
+#st.header('Número de envíos activos: '+ str(ccount))
+#st.dataframe(dfp, 1440, 540)
 
 
 #---- Gráfico de enviados

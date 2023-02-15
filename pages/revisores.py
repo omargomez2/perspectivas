@@ -31,11 +31,11 @@ def run_query(query):
         cur.execute(query)
         return cur.fetchall()
 
-rows_rev_act = run_query("select id, título, envío, estado, decisión, \"fecha decisión\", revisor, asignada, completado, date_part('day', current_date::timestamp-asignada::timestamp) as \"días desde asignación\" from activos_rev;")
+rows_rev_act = run_query("select id, título, autor, envío, estado, decisión, \"fecha decisión\", revisor, asignada, completado, date_part('day', current_date::timestamp-asignada::timestamp) as \"días desde asignación\" from activos_rev;")
 conn.close()
 
 #--- Manuscritos activos
-dfp = pandas.DataFrame(rows_rev_act, columns = ['Id','Título','Enviado','Estado','Decisión Ed.','F. Decisión Ed.','Revisor','F. Asignada','F. Completada','Días Asig.'])
+dfp = pandas.DataFrame(rows_rev_act, columns = ['Id','Título','Autor','Enviado','Estado','Decisión Ed.','F. Decisión Ed.','Revisor','F. Asignada','F. Completada','Días Asig.'])
 dfp = dfp.set_index('Id')
 
 st.header('Información de revisores y envíos activos: ')
