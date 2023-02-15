@@ -35,7 +35,7 @@ rows_rev_act = run_query("select id, título, autor, envío, estado, decisión, 
 conn.close()
 
 #--- Manuscritos activos
-dfp = pandas.DataFrame(rows_rev_act, columns = ['Id','Título','Autor','Enviado','Estado','Decisión Ed.','F. Decisión Ed.','Revisor','F. Asignada','F. Completada','Días Asig.'])
+dfp = pandas.DataFrame(rows_rev_act, columns = ['Id','Título','Autor','Enviado','Estado','Decisión Ed.','F. Dec. Ed.','Revisor','F. Asignada','Completada','Días Asig.'])
 dfp = dfp.set_index('Id')
 
 st.header('Información de revisores y envíos activos: ')
