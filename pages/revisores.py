@@ -8,6 +8,13 @@ import streamlit as st
 import pandas
 import psycopg2
 
+
+st.set_page_config(
+    page_title="Estado manuscritos recibidos revista Perspectivas",
+    page_icon="📜",
+)
+
+
 # Initialize connection.
 # Uses st.experimental_singleton to only run once.
 #-@st.experimental_singleton
@@ -28,7 +35,7 @@ rows_rev_act = run_query("select id, título, envío, estado, decisión, \"fecha
 conn.close()
 
 #--- Manuscritos activos
-dfp = pandas.DataFrame(rows_rev_act, columns = ['Paper Id','Título','Envío','Estado','Decisión','F. Decisión','Revisor','F. Asignación','F. Completado','Días Asig.'])
+dfp = pandas.DataFrame(rows_rev_act, columns = ['Id','Título','Envío','Estado','Decisión Ed.','F. Decisión Ed.','Revisor','F. Asignada','F. Completada','Días Asig.'])
 dfp = dfp.set_index('Paper Id')
 
 st.header('Información de revisores y envíos activos: ')
