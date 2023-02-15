@@ -34,8 +34,6 @@ def run_query(query):
         return cur.fetchall()
 
 rows_aux = run_query("select * from datamart;")
-#rows_papers = run_query("select id, título, autor, envío, date_part('day', current_date::timestamp-envío::timestamp) as días, estado, \"ult. modificación\", decisión, \"fecha decisión\" from activos;")
-rows_rev_act = run_query("select id, título, autor, envío, estado, decisión, \"fecha decisión\", revisor, asignada, completado, date_part('day', current_date::timestamp-asignada::timestamp) as \"días desde asignación\" from activos_rev;")
 rows_words = run_query("select \"palabras clave\" from keywords;")
 conn.close()
 
@@ -56,17 +54,6 @@ col4.metric('2021', round(df_aux.loc[3].at['Envíos']), round(df_aux.loc[3].at['
 col5.metric('2022', round(df_aux.loc[4].at['Envíos']), round(df_aux.loc[4].at['Envíos d']))
 col6.metric('2023', round(df_aux.loc[5].at['Envíos']), round(df_aux.loc[5].at['Envíos d']))
 
-
-#--- Manuscritos activos
-#dfp = pandas.DataFrame(rows_papers, columns = ['Id','Título','Autor','Enviado','Días','Estado','Ult. Modificación','Decisión','Fecha Decisión'])
-dfp = pandas.DataFrame(rows_rev_act, columns = ['Id','Título','Autor','Enviado','Estado','Decisión Ed.','F. Decisión Ed.','Revisor','F. Asignada','F. Completada','Días Asig.'])
-#dfp.Días = dfp.Días.round().astype(int)
-dfp=dfp.drop_duplicates(subset=['Id'])
-
-#dfp = dfp.set_index('Id')
-ccount = len(dfp.index)
-st.header('Número de envíos activos: '+ str(ccount))
-#st.dataframe(dfp, 1440, 540)
 
 
 #---- Gráfico de enviados
