@@ -44,7 +44,7 @@ dfp = pandas.DataFrame(rows_rev_act, columns = ['Id','Título','Autor','Enviado'
 df_count=dfp.drop_duplicates(subset=['Id'])
 dfp = dfp.set_index('Id')
 
-st.header('Información de revisores y envíos activos: ')
+#st.header('Información de revisores y envíos activos')
 ccount = len(df_count.index)
 st.header('Número de envíos activos: '+ str(ccount))
 
