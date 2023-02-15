@@ -35,16 +35,18 @@ rows_rev_act = run_query("select id, título, autor, envío, estado, decisión, 
 conn.close()
 
 
+st.title('Revista Perspectivas')
+
 #--- Manuscritos activos
 #dfp.Días = dfp.Días.round().astype(int)
+
 dfp = pandas.DataFrame(rows_rev_act, columns = ['Id','Título','Autor','Enviado','Estado','Decisión Ed.','F. Dec. Ed.','Revisor','F. Asignada','Completada','Días Asig.'])
+df_count=dfp.drop_duplicates(subset=['Id'])
 dfp = dfp.set_index('Id')
 
 st.header('Información de revisores y envíos activos: ')
+ccount = len(df_count.index)
+st.header('Número de envíos activos: '+ str(ccount))
+
 st.dataframe(dfp, 1440, 540)
 
-
-dfp=dfp.drop_duplicates(subset=['Id'])
-#dfp = dfp.set_index('Id')
-ccount = len(dfp.index)
-st.header('Número de envíos activos: '+ str(ccount))
