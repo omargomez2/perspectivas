@@ -90,7 +90,7 @@ col5.metric('2022', round(df_aux.loc[4].at['Publicados']), round(df_aux.loc[4].a
 #---Métrica tasa de aceptación
 st.header('Tasa de aceptación por año')
 col1, col2, col3, col4, col5, col6 = st.columns(6)
-col1.metric('2018', df_aux.loc[0].at['Tasa'], df_aux.loc[1].at['Tasa d'])
+#col1.metric('2018', df_aux.loc[0].at['Tasa'], df_aux.loc[1].at['Tasa d'])
 col2.metric('2019', str(round(df_aux.loc[1].at['Tasa']))+'%', df_aux.loc[1].at['Tasa d'])
 col3.metric('2020', str(round(df_aux.loc[2].at['Tasa']))+'%', str(round(df_aux.loc[2].at['Tasa d']))+'%')
 col4.metric('2021', str(round(df_aux.loc[3].at['Tasa']))+'%', str(round(df_aux.loc[3].at['Tasa d']))+'%')
