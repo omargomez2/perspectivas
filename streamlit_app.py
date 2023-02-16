@@ -74,6 +74,18 @@ st.header('Estado por año')
 st.bar_chart(df_estado)
 #st.line_chart(df_estado)
 
+#---Métrica publicados
+st.header('Número de manuscritos publicados por año')
+#df_aux = pandas.DataFrame(rows_aux, columns = ['Año','Envíos','Envíos d','Publicados','Publicados d','Rechazados','Rechazados d','Tasa','Tasa d'])
+
+col1, col2, col3, col4, col5, col6 = st.columns(6)
+#col1.metric('2018', round(df_aux.loc[0].at['Envíos']), df_aux.loc[0].at['Envíos d'])
+col2.metric('2019', round(df_aux.loc[1].at['Publicados']), df_aux.loc[1].at['Publicados d'])
+col3.metric('2020', round(df_aux.loc[2].at['Publicados']), round(df_aux.loc[2].at['Publicados d']))
+col4.metric('2021', round(df_aux.loc[3].at['Publicados']), round(df_aux.loc[3].at['Publicados d']))
+col5.metric('2022', round(df_aux.loc[4].at['Publicados']), round(df_aux.loc[4].at['Publicados d']))
+#col6.metric('2023', round(df_aux.loc[5].at['Publicados']), round(df_aux.loc[5].at['Publicados d']))
+
 
 #---Métrica tasa de aceptación
 st.header('Tasa de aceptación por año')
